@@ -1,4 +1,8 @@
-let SizeSelector = ({ size, setSize }) => {
+import { useContext } from "react"
+import GameContext from "./index"
+
+let SizeSelector = () => {
+    const { size, setSize } = useContext(GameContext)
     const sizes = [4, 6, 8, 10, 12]
 
     return (
