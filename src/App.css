@@ -1,8 +1,77 @@
-body {
+html, body {
+  height: 98%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.size-selector label {
+h1 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+div#table {
+  margin-top: 2rem !important;
+  margin: auto;
+}
+
+div#root {
+  height: 100%;
+}
+
+div#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div#inputs {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+div#size-selector {
+  display: flex;
+  justify-content: center;
+}
+
+#solve-button {
+  width: 4rem;
+  margin: auto;
+  background-color: #ffffff;
+  color: #000000;
+  border-width: 0.05em;
+  border-radius: 0.2em;
+}
+
+.cell-button {
+  width: 3em;
+  height: 3em;
+  margin-right: 0.7em;
+  margin-bottom: 0.7em;
+  border-width: 0.15em;
+  border-radius: 0.7em;
+}
+
+.cell-button[value="0"] {
+  background-color: #ffffff;
+}
+
+.cell-button[value="1"] {
+  background-color: #ff0000;
+}
+
+.cell-button[value="2"] {
+  background-color: #0000ff;
+}
+
+div#size-selector label {
   margin-left: 0.2em;
   margin-right: 0.8em;
+}
+
+div#size-selector input[type="radio"] {
+  accent-color: #000000;
 }
