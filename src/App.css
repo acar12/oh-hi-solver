@@ -56,6 +56,8 @@ div#size-selector {
   border-width: 0.15em;
   border-radius: 0.7em;
   border-color: #1E1E24;
+  border-bottom-width: 0.4em;
+  transition: background-color 0.2s;
 }
 
 .grid-button[value="0"] {
@@ -63,11 +65,11 @@ div#size-selector {
 } 
 
 .grid-button[value="1"] {
-  background-color: #D05353;
+  background-color: #F0544F;
 }
 
 .grid-button[value="2"] {
-  background-color: #058ED9;
+  background-color: #3C91E6;
 }
 
 div#size-selector label {
