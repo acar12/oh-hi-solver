@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import GameContext from "./index"
 import SizeSelector from "./SizeSelector"
 import Grid from "./Grid"
+import solve from "./solver"
 import "./App.css"
 
 let App = () => {
@@ -16,6 +17,11 @@ let App = () => {
         setGrid(temp)
     }
 
+    let solveWrapper = () => {
+        let copy = grid.map((r) => r.map((e) => e))
+        solve(copy, () => setGrid(copy))
+    }
+
     return (
         <GameContext.Provider value={{ size, setSize, grid, setGrid }}>
             <div id="app">
@@ -23,7 +29,7 @@ let App = () => {
                 <Grid />
                 <div id="inputs">
                     <SizeSelector />
-                    <button id="solve-button">Solve</button>
+                    <button id="solve-button" onClick={solveWrapper}>Solve</button>
                 </div>
             </div>
         </GameContext.Provider>
