@@ -1,20 +1,4 @@
 let isValidSolution = (grid) => {
-    // 3 horizontal
-    for (let row of grid) {
-        for (let col = 0; col < grid.length - 4; col++) {
-            if ((row[col] === row[col + 1] === row[col + 2]) && row[col] !== 0) {
-                return false
-            }
-        }
-    }
-    // 3 vertical
-    for (let col = 0; col < grid.length; col++) {
-        for (let row = 0; row < grid.length - 4; row++) {
-            if ((grid[row][col] === grid[row + 1][col] === grid[row + 2][col]) && grid[row][col] !== 0) {
-                return false
-            }
-        }
-    }
     for (let i1 = 0; i1 < grid.length - 1; i1++) {
         for (let i2 = i1 + 1; i2 < grid.length; i2++) {
             // unique rows
@@ -50,11 +34,27 @@ let isValidSolution = (grid) => {
             return false
         }
     }
+    // 3 horizontal
+    for (let row of grid) {
+        for (let col = 0; col < grid.length - 4; col++) {
+            if ((row[col] === row[col + 1] === row[col + 2]) && row[col] !== 0) {
+                return false
+            }
+        }
+    }
+    // 3 vertical
+    for (let col = 0; col < grid.length; col++) {
+        for (let row = 0; row < grid.length - 4; row++) {
+            if ((grid[row][col] === grid[row + 1][col] === grid[row + 2][col]) && grid[row][col] !== 0) {
+                return false
+            }
+        }
+    }
     // default
     return true
 }
 
-let solve = (grid, update) => {
+let solve = (grid, cb) => {
     let current = [0, 0]
 
     while (grid[current[0]][current[1]] !== 0) {
@@ -64,14 +64,23 @@ let solve = (grid, update) => {
             current[0] += 1
         }
         if (current[0] >= grid.length) {
-            return isValidSolution(grid)
+            let sol = isValidSolution(grid)
+            if (sol) {
+                cb(grid)
+            }
+            return sol
         }
     }
 
     for (let v = 1; v <= 2; v++) {
         grid[current[0]][current[1]] = v
-        update()
-        if (solve(grid, update)) {
+
+        if (!isValidSolution(grid)) {
+            grid[current[0]][current[1]] = 0
+            continue
+        }
+
+        if (solve(grid, cb)) {
             return true
         } else {
             grid[current[0]][current[1]] = 0

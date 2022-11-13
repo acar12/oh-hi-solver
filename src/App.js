@@ -17,11 +17,6 @@ let App = () => {
         setGrid(temp)
     }
 
-    let solveWrapper = () => {
-        let copy = grid.map((r) => r.map((e) => e))
-        solve(copy, () => setGrid(copy))
-    }
-
     return (
         <GameContext.Provider value={{ size, setSize, grid, setGrid }}>
             <div id="app">
@@ -29,7 +24,10 @@ let App = () => {
                 <Grid />
                 <div id="inputs">
                     <SizeSelector />
-                    <button id="solve-button" onClick={solveWrapper}>Solve</button>
+                    <button id="solve-button" onClick={() => {
+                        let temp = grid.map((r) => r.map((e) => e))
+                        solve(temp, setGrid)
+                    }}>Solve</button>
                 </div>
             </div>
         </GameContext.Provider>
